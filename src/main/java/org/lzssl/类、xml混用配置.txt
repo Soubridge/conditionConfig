@@ -1,0 +1,9 @@
+
+
+在配置类上加@ImportSource("classpath:applicationContext.xml")注解，可以引入xml文件配置的bean，bean冲突也会存在
+
+
+@Configuration
+@ImportResource("classpath:applicationContext.xml")
+public class JavaConfig(){
+}

@@ -1,0 +1,5 @@
+@Conditional(XxxCondition.class)，放在配置类(JavaConfig)的方法前，这个方法是用于注入bean的那个方法
+某个条件满足后才会将Bean拿出来用，这个条件在XxxCondition类的matches方法中由返回值(false/true)规定，这个方法继承自Condition接口
+当然需要条件判断可以给多个Bean起一样的名字，起到模糊的效果，具体拿哪个Bean交由@conditional(.class)来判断
+
+适用于需要 根据判断条件加载Bean的情况，这个条件写在XxxCondition类中！！！（多环境切换）

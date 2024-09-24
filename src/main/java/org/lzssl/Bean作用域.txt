@@ -1,0 +1,10 @@
+默认情况从容器中取出的bean都为同一个，若想让每次取出都为不同的bean，可以给scope指定为prototype
+默认情况就是单例模式，可以应付大多数的情况
+
+
+java配置类
+在返回实例的那个方法上加 @Scope("prototype") 注释
+
+xml文件配置
+在bean上再加个scope参数，指定它的值
+<bean class="...DateSource" id="devDs" scope="prototype">

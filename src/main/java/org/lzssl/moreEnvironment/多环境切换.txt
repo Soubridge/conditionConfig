@@ -1,0 +1,21 @@
+profile n. 简介，概述
+
+
+可以在Main中规定加载哪一类的bean，这个规定可以由@Profile("dev")实现，如果配置时注明了这个bean时 dev，那么加载时可以加载进来
+未注明使用环境的bean依旧可以被加载进来，这个同样可以由JavaConfig和xml文件配置
+未指名使用环境的Main无法拿到已规定环境标记的bean
+
+
+java配置下【在配置时为需要区分的Bean加上@Profile("dev")注解，在加载时规定环境，只有指定被表上对应环境标识(dev)和未指明标识的才会被加载】
+new AnnotationConfigApplicationContext() 但先不写具体配置类
+ctx.getEnvironment().setActiveProfiles("dev");  先规定只加载哪个环境标识下的bean，其他环境标识的都不加载
+ctx.register(JavaConfig.class)  加载具体配置类
+ctx.refresh()  刷新下容器
+ctx.getBean(...) 拿bean
+
+xml配置下 在同一环境标识的bean外加层<beans profile="dev"> <bean.../><bean.../> </beans>指定同一环境下的beans
+new ClassPathXmlApplicationContext()   同样是不给具体的配置文件信息
+ctx.getEnvironment().setActiveProfiles("prod") 注明哪个环境的类会被加载
+ctx.setConfigLocation("applicationContext.xml")  加载具体的配置文件
+ctx.refresh()  刷新下容器
+ctx.getBean(...)  拿bean
